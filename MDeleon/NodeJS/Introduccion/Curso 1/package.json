@@ -1,0 +1,28 @@
+{
+  "name": "curso-node",
+  "version": "1.0.0",
+  "description": "El mejor curso de Node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MarcoDeLeo91/projects.git"
+  },
+  "keywords": [
+    "curso",
+    "node",
+    "nodejs",
+    "midudev"
+  ],
+  "author": "Marco Tulio De León",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MarcoDeLeo91/projects/issues"
+  },
+  "homepage": "https://github.com/MarcoDeLeo91/projects#readme",
+  "dependencies": {
+    "picocolors": "1.1.1"
+  }
+}
