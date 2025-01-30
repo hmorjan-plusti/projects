@@ -44,5 +44,16 @@
     "duration": "120 min",
     "poster": "https://example.com/minimal.jpg",
     "id": "ab87f734-4e96-4bc6-9b1e-b86405f8ee46"
+  },
+  {
+    "title": "Batman",
+    "director": "Jane Doe",
+    "year": 2023,
+    "genre": [
+      "Action"
+    ],
+    "duration": "120 min",
+    "poster": "https://images.squarespace-cdn.com/content/v1/53226684e4b08a6c35f84cbe/1512971655960-25Z9DWXDYJESSZ5W1ZWP/Batman.jpg?format=1500w",
+    "id": "eab9a2aa-3cef-4862-b262-f732f00198a8"
   }
 ]

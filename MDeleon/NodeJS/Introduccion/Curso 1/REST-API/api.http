@@ -26,6 +26,24 @@ Content-Type: application/json
   "poster": "https://example.com/minimal.jpg"
 }
 
+//nurbs pelicula batman
+{
+  "title": "Batman",
+  "year": 2023,
+  "director": "Jane Doe",
+  "duration": "120 min",
+  "genre": ["Action"],
+  "poster": "https://images.squarespace-cdn.com/content/v1/53226684e4b08a6c35f84cbe/1512971655960-25Z9DWXDYJESSZ5W1ZWP/Batman.jpg?format=1500w"
+}
+{
+  "title": "Minimal Movie",
+  "year": 2023,
+  "director": "Jane Doe",
+  "duration": "120 min",
+  "genre": ["Drama"],
+  "poster": "https://example.com/minimal.jpg"
+}
+
 ### actualizar una peliculas
 
 PATCH http://localhost:1234/movies/1
