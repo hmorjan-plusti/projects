@@ -1,0 +1,48 @@
+[
+  {
+    "id": "1",
+    "title": "Updated Title",
+    "year": 1994,
+    "director": "Frank Darabont",
+    "duration": "2h 22min",
+    "poster": "https://example.com/shawshank.jpg",
+    "genre": [
+      "Drama"
+    ],
+    "rate": 9.3
+  },
+  {
+    "id": "2",
+    "title": "The Godfather",
+    "year": 1972,
+    "director": "Francis Ford Coppola",
+    "duration": "2h 55min",
+    "poster": "https://images6.alphacoders.com/404/404693.jpg",
+    "genre": [
+      "Crime"
+    ],
+    "rate": 9.2
+  },
+  {
+    "title": "Minimal Movie",
+    "director": "Jane Doe",
+    "year": 2023,
+    "genre": [
+      "Drama"
+    ],
+    "duration": "120 min",
+    "poster": "https://render.fineartamerica.com/images/rendered/default/poster/6/8/break/images/artworkimages/medium/3/no183-my-back-to-the-future-minimal-movie-poster-part-ii-chungkong-art.jpg",
+    "id": "60206a6f-943b-40e1-87ac-e55b862a9d06"
+  },
+  {
+    "title": "Minimal Movie",
+    "director": "Jane Doe",
+    "year": 2023,
+    "genre": [
+      "Drama"
+    ],
+    "duration": "120 min",
+    "poster": "https://example.com/minimal.jpg",
+    "id": "ab87f734-4e96-4bc6-9b1e-b86405f8ee46"
+  }
+]
