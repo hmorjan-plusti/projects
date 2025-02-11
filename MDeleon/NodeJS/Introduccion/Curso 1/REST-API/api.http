@@ -2,7 +2,7 @@
 
 GET http://localhost:1234/movies
 
-### recuperar una pelicula por id	    
+### recuperar una pelicula por id
 
 GET http://localhost:1234/movies/1  
 
@@ -15,8 +15,6 @@ GET http://localhost:1234/movies?genre=Action
 POST http://localhost:1234/movies
 Content-Type: application/json
 
-
-// agregar una pelicula nueva y todos sus campos difetene a the godfather
 {
   "title": "Minimal Movie",
   "year": 2023,
@@ -26,7 +24,11 @@ Content-Type: application/json
   "poster": "https://example.com/minimal.jpg"
 }
 
-//nurbs pelicula batman
+### crear otra pelicula con post
+
+POST http://localhost:1234/movies
+Content-Type: application/json
+
 {
   "title": "Batman",
   "year": 2023,
@@ -35,21 +37,12 @@ Content-Type: application/json
   "genre": ["Action"],
   "poster": "https://images.squarespace-cdn.com/content/v1/53226684e4b08a6c35f84cbe/1512971655960-25Z9DWXDYJESSZ5W1ZWP/Batman.jpg?format=1500w"
 }
-{
-  "title": "Minimal Movie",
-  "year": 2023,
-  "director": "Jane Doe",
-  "duration": "120 min",
-  "genre": ["Drama"],
-  "poster": "https://example.com/minimal.jpg"
-}
 
-### actualizar una peliculas
+### actualizar una pelicula
 
 PATCH http://localhost:1234/movies/1
 Content-Type: application/json
 
 {
   "title": "Updated Title"
- 
 }
