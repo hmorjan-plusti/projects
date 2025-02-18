@@ -1,65 +1,64 @@
 import express from 'express';
 import cors from 'cors';
-import { randomUUID } from 'crypto';
-import { writeFileSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
-import { validateMovie, validatePartialMovie } from './schemas/movies.js';
-import fs from 'fs';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const movies = JSON.parse(fs.readFileSync(join(__dirname, 'movies.json'), 'utf8'));
+import { movieSchema, partialMovieSchema } from './schemas/movies.js';
 
 const app = express();
+const port = process.env.PORT || 1234;
 
 app.use(cors());
 app.use(express.json());
-app.disable('x-powered-by');
 
-app.get('/', (req, res) => {
-  res.sendFile(join(__dirname, 'web', 'index.html'));
+let movies = [];
+let currentId = 1;
+
+app.get('/movies', (req, res) => {
+  const { genre } = req.query;
+  if (genre) {
+    const filteredMovies = movies.filter(movie => movie.genre.includes(genre));
+    res.json(filteredMovies);
+  } else {
+    res.json(movies);
+  }
+});
+
+app.get('/movies/:id', (req, res) => {
+  const movie = movies.find(m => m.id === parseInt(req.params.id));
+  if (movie) {
+    res.json(movie);
+  } else {
+    res.status(404).json({ message: 'Movie not found' });
+  }
 });
 
 app.post('/movies', (req, res) => {
   try {
-    const result = validateMovie(req.body);
-    if (!result.success) {
-      return res.status(400).json(result.error);
-    }
-    const newMovie = { id: randomUUID(), ...result.data };
-    movies.push(newMovie);
-    writeFileSync(join(__dirname, 'movies.json'), JSON.stringify(movies, null, 2));
-    res.status(201).json(newMovie);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    const movie = movieSchema.parse(req.body);
+    movie.id = currentId++;
+    movies.push(movie);
+    res.status(201).json(movie);
+  } catch (e) {
+    console.error("Validation error:", e.errors); // Mostrar error en la consola
+    res.status(400).json({ error: "Invalid movie data", details: e.errors });
   }
 });
 
 app.patch('/movies/:id', (req, res) => {
   try {
-    const result = validatePartialMovie(req.body);
-    if (!result.success) {
-      return res.status(400).json(result.error);
+    const movie = movies.find(m => m.id === parseInt(req.params.id));
+    if (!movie) {
+      return res.status(404).json({ message: 'Movie not found' });
     }
-    const index = movies.findIndex(movie => movie.id === req.params.id);
-    if (index === -1) {
-      return res.status(404).json({ error: 'Movie not found' });
-    }
-    movies[index] = { ...movies[index], ...result.data };
-    writeFileSync(join(__dirname, 'movies.json'), JSON.stringify(movies, null, 2));
-    res.json(movies[index]);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    const updatedMovie = partialMovieSchema.parse(req.body);
+    Object.assign(movie, updatedMovie);
+    res.json(movie);
+  } catch (e) {
+    res.status(400).json({ error: "Invalid update data", details: e.errors });
   }
 });
 
-const PORT = process.env.PORT || 1234;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+// Inicia el servidor y lo exporta para cerrarlo en las pruebas
+const server = app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`);
 });
 
-export default app;
+export { app, server };

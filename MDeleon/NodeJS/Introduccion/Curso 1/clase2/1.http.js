@@ -11,6 +11,7 @@ const processRequest = (req, res) => {
   } else if (req.url === '/imagen-super.png') {
     fs.readFile('./mario.png', (err, data) => {
       if (err) {
+        console.error('Error leyendo el archivo:', err)
         res.statusCode = 500
         res.end('<h1>Internal Server Error</h1>')
       } else {
