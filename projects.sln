@@ -1,0 +1,32 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MDeleon", "MDeleon", "{557B1A82-BD5D-E813-386E-A047F33ACBDF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".NET", ".NET", "{0DA4DB6B-A9CE-9EE1-8394-83C2CAA88FD4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiWebAPI", "MDeleon\.NET\MiWebAPI\MiWebAPI.csproj", "{E4DB8686-A5A1-1220-E6C8-DFC726CC77C8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E4DB8686-A5A1-1220-E6C8-DFC726CC77C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4DB8686-A5A1-1220-E6C8-DFC726CC77C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4DB8686-A5A1-1220-E6C8-DFC726CC77C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4DB8686-A5A1-1220-E6C8-DFC726CC77C8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0DA4DB6B-A9CE-9EE1-8394-83C2CAA88FD4} = {557B1A82-BD5D-E813-386E-A047F33ACBDF}
+		{E4DB8686-A5A1-1220-E6C8-DFC726CC77C8} = {0DA4DB6B-A9CE-9EE1-8394-83C2CAA88FD4}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E3694A8E-E01D-4CF3-8A0C-AD78FF5A609C}
+	EndGlobalSection
+EndGlobal

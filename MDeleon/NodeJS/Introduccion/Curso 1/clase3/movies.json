@@ -44,5 +44,16 @@
     "duration": "120 min",
     "poster": "https://example.com/minimal.jpg",
     "id": "ab87f734-4e96-4bc6-9b1e-b86405f8ee46"
+  },
+  {
+    "title": "Minimal Movie",
+    "director": "Jane Doe",
+    "year": 2023,
+    "genre": [
+      "Drama"
+    ],
+    "duration": "120 min",
+    "poster": "https://example.com/minimal.jpg",
+    "id": "96f69b3d-daa3-4197-8bd5-ddffa421291a"
   }
 ]
