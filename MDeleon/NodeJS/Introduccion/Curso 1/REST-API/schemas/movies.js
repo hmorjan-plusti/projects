@@ -1,4 +1,4 @@
-const { z } = require('zod')
+import { z } from 'zod';
 
 // Definir el esquema base de la película
 const movieSchema = z.object({
@@ -35,20 +35,9 @@ const movieSchema = z.object({
       required_error: 'Poster is required'
     }),
   rate: z.number().optional() // Calificación no obligatoria
-})
+});
 
 // Extender el esquema para hacerlo parcialmente opcional
-const partialMovieSchema = movieSchema.extend({
-  title: z.string().optional(),
-  director: z.string().optional(),
-  year: z.number().optional(),
-  genre: z.array(z.string()).optional(),
-  duration: z.string().optional(),
-  poster: z.string().url().optional(),
-  rate: z.number().optional()
-})
+const partialMovieSchema = movieSchema.partial();
 
-module.exports = {
-  movieSchema,
-  partialMovieSchema
-}
+export { movieSchema, partialMovieSchema };

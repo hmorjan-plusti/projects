@@ -1,13 +1,15 @@
 import mysql from 'mysql2/promise'
+import dotenv from 'dotenv'
 
-const DEFAULT_CONFIG = {
-  host: 'localhost',
+dotenv.config()
+
+const connectionString = process.env.DATABASE_URL ?? {
+  host: 'interchange.proxy.rlwy.net',
   user: 'root',
-  port: 3306,
-  password: '',
-  database: 'moviesdb'
+  port: 45948,
+  password: 'XfnAAvlPRtWKWWASpdkkkvHGVDNYkNrhL',
+  database: 'railway'
 }
-const connectionString = process.env.DATABASE_URL ?? DEFAULT_CONFIG
 
 const connection = await mysql.createConnection(connectionString)
 
@@ -96,7 +98,7 @@ export class MovieModel {
   }
 
   static async delete ({ id }) {
-    // ejercio fácil: crear el delete
+    // ejercicio fácil: crear el delete
   }
 
   static async update ({ id, input }) {

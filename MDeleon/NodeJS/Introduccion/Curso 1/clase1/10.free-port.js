@@ -22,3 +22,10 @@ function findAvailablePort (desiredPort) {
 }
 
 module.exports = { findAvailablePort }
+
+// Código para probar la función findAvailablePort
+findAvailablePort(1234).then(port => {
+  console.log(`Puerto disponible encontrado: ${port}`)
+}).catch(err => {
+  console.error(`Error al encontrar un puerto disponible: ${err}`)
+})

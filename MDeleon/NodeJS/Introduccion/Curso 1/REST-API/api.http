@@ -1,17 +1,13 @@
 ### recuperar todas las peliculas
-
 GET http://localhost:1234/movies
 
 ### recuperar una pelicula por id
-
 GET http://localhost:1234/movies/1  
 
 ### recuperar todas las peliculas por genero
-
 GET http://localhost:1234/movies?genre=Action
 
 ### crear una pelicula con post
-
 POST http://localhost:1234/movies
 Content-Type: application/json
 
@@ -25,7 +21,6 @@ Content-Type: application/json
 }
 
 ### crear otra pelicula con post
-
 POST http://localhost:1234/movies
 Content-Type: application/json
 
@@ -39,7 +34,6 @@ Content-Type: application/json
 }
 
 ### actualizar una pelicula
-
 PATCH http://localhost:1234/movies/1
 Content-Type: application/json
 
