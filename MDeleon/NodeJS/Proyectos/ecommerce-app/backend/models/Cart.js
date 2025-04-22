@@ -25,12 +25,12 @@ const cartSchema = new mongoose.Schema({
     type: Number, // Número correlativo de la compra
   },
   totalAmount: {
-    type: Number, // Monto total de la compra
+    type: Number, 
   },
   purchasedProducts: [
     {
-      name: String, // Nombre del producto
-      quantity: Number, // Cantidad comprada
+      name: String, 
+      quantity: Number, 
     },
   ],
 });

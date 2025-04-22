@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const CartPage = () => {
   const [cart, setCart] = useState(null);
+  const navigate = useNavigate();
 
   // Obtener el carrito actual desde el backend
   useEffect(() => {
@@ -51,12 +53,21 @@ const CartPage = () => {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('userToken'); // Elimina el token de usuario
+    navigate('/login'); // Redirige al usuario a la página de inicio de sesión
+  };
+
+  const goBack = () => {
+    navigate(-1); // Navega a la página anterior
+  };
+
   if (!cart) {
     return <p>Cargando carrito...</p>;
   }
 
   return (
-    <div>
+    <div style={styles.container}>
       <h1>Carrito</h1>
       {cart.products.length === 0 ? (
         <p>El carrito está vacío</p>
@@ -80,8 +91,41 @@ const CartPage = () => {
           Pagar
         </button>
       )}
+      <div style={styles.buttons}>
+        <button onClick={goBack} style={styles.backButton}>Regresar</button>
+        <button onClick={handleLogout} style={styles.logoutButton}>Cerrar Sesión</button>
+      </div>
     </div>
   );
+};
+
+const styles = {
+  container: {
+    padding: '20px',
+  },
+  buttons: {
+    marginTop: '20px',
+    display: 'flex',
+    gap: '10px',
+  },
+  backButton: {
+    backgroundColor: '#95a5a6',
+    color: 'white',
+    border: 'none',
+    padding: '10px 15px',
+    cursor: 'pointer',
+    fontSize: '16px',
+    borderRadius: '4px',
+  },
+  logoutButton: {
+    backgroundColor: '#e74c3c',
+    color: 'white',
+    border: 'none',
+    padding: '10px 15px',
+    cursor: 'pointer',
+    fontSize: '16px',
+    borderRadius: '4px',
+  },
 };
 
 export default CartPage;

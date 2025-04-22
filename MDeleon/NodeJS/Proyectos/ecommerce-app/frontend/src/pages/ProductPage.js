@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const ProductPage = () => {
   const [products, setProducts] = useState([]);
   const [newProduct, setNewProduct] = useState({ name: '', price: '' });
   const [editingProduct, setEditingProduct] = useState(null);
+  const navigate = useNavigate();
 
   // Obtener productos desde el backend
   useEffect(() => {
@@ -80,8 +82,18 @@ const ProductPage = () => {
       alert('No se pudo agregar el producto al carrito');
     }
   };
+
+  const handleLogout = () => {
+    localStorage.removeItem('userToken'); // Elimina el token de usuario
+    navigate('/login'); // Redirige al usuario a la página de inicio de sesión
+  };
+
+  const goToCart = () => {
+    navigate('/cart'); // Redirige al usuario a la página del carrito
+  };
+
   return (
-    <div>
+    <div style={styles.container}>
       <h1>Gestión de Productos</h1>
 
       {/* Formulario para agregar o editar un producto */}
@@ -143,8 +155,42 @@ const ProductPage = () => {
           </li>
         ))}
       </ul>
+
+      <div style={styles.buttons}>
+        <button onClick={goToCart} style={styles.cartButton}>Ir al Carrito</button>
+        <button onClick={handleLogout} style={styles.logoutButton}>Cerrar Sesión</button>
+      </div>
     </div>
   );
+};
+
+const styles = {
+  container: {
+    padding: '20px',
+  },
+  buttons: {
+    marginTop: '20px',
+    display: 'flex',
+    gap: '10px',
+  },
+  cartButton: {
+    backgroundColor: '#3498db',
+    color: 'white',
+    border: 'none',
+    padding: '10px 15px',
+    cursor: 'pointer',
+    fontSize: '16px',
+    borderRadius: '4px',
+  },
+  logoutButton: {
+    backgroundColor: '#e74c3c',
+    color: 'white',
+    border: 'none',
+    padding: '10px 15px',
+    cursor: 'pointer',
+    fontSize: '16px',
+    borderRadius: '4px',
+  },
 };
 
 export default ProductPage;
