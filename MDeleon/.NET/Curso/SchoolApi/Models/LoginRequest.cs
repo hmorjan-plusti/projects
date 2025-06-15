@@ -1,8 +1,0 @@
-namespace SchoolApi.Models
-{
-    public class LoginRequest
-    {
-        public required string Username { get; set; } // Agregado 'required'
-        public required string Password { get; set; } // Agregado 'required'
-    }
-}
