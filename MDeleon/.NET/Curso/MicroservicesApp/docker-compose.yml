@@ -1,0 +1,55 @@
+services:
+
+  db:
+    image: mcr.microsoft.com/mssql/server
+    environment:
+      SA_PASSWORD: "YourStrong!Pass"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  productservice:
+    build: ./Services/ProductService
+    ports:
+      - "7001:80"
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=db;Database=ProductDb;User Id=sa;Password=YourStrong!Pass;TrustServerCertificate=True;
+    depends_on:
+      - db
+      - rabbitmq
+    restart: always
+
+  orderservice:
+    build: ./Services/OrderService
+    ports:
+      - "7002:80"
+    environment:
+      - RabbitMQ__Host=rabbitmq
+    depends_on:
+      - rabbitmq
+    restart: always
+
+  notificationservice:
+    build: ./Services/NotificationService
+    ports:
+      - "7003:80"
+    environment:
+      - RabbitMQ__Host=rabbitmq
+    depends_on:
+      - rabbitmq
+    restart: always
+
+  apigateway:
+    build: ./ApiGateway
+    ports:
+      - "5000:80"
+    depends_on:
+      - productservice
+      - orderservice
+    restart: always
