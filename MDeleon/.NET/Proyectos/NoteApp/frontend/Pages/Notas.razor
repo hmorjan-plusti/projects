@@ -1,0 +1,115 @@
+@page "/notas"
+@using frontend.Models
+@using frontend.Services
+@inject NoteService NoteService
+@inject AuthService AuthService
+@inject NavigationManager Nav
+
+<h3>Mis Notas</h3>
+
+@if (!autenticado)
+{
+    <p class="text-danger">No estás autenticado. <a href="#" @onclick="IrAlInicio">Inicia sesión aquí</a>.</p>
+}
+else if (notas is null)
+{
+    <p>Cargando notas...</p>
+}
+else
+{
+    <ul class="list-group mb-4">
+        @foreach (var nota in notas)
+        {
+            <li class="list-group-item">
+                <strong>@nota.Title</strong><br />
+                <p>@nota.Content</p>
+                <button class="btn btn-warning btn-sm me-2" @onclick="() => EditarNota(nota)">Editar</button>
+                <button class="btn btn-danger btn-sm" @onclick="() => BorrarNota(nota.Id)">Eliminar</button>
+            </li>
+        }
+    </ul>
+
+    <h4>@(notaEditando.Id == 0 ? "Nueva Nota" : "Editar Nota")</h4>
+    <EditForm Model="notaEditando" OnValidSubmit="GuardarNota">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="mb-2">
+            <InputText @bind-Value="notaEditando.Title" class="form-control" placeholder="Título" />
+        </div>
+
+        <div class="mb-2">
+            <InputTextArea @bind-Value="notaEditando.Content" class="form-control" placeholder="Contenido" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            @((notaEditando.Id == 0) ? "Agregar" : "Actualizar")
+        </button>
+
+        @if (notaEditando.Id != 0)
+        {
+            <button type="button" class="btn btn-secondary ms-2" @onclick="CancelarEdicion">
+                Cancelar
+            </button>
+        }
+    </EditForm>
+}
+
+@code {
+    private List<Note>? notas;
+    private Note notaEditando = new();
+    private bool autenticado = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await AuthService.LoadToken();
+        autenticado = !string.IsNullOrEmpty(AuthService.Token);
+
+        if (autenticado)
+        {
+            notas = await NoteService.GetNotes();
+        }
+    }
+
+    private async Task GuardarNota()
+    {
+        bool success = notaEditando.Id == 0
+        ? await NoteService.CreateNote(notaEditando)
+        : await NoteService.UpdateNote(notaEditando);
+
+        if (success)
+        {
+            notaEditando = new();
+            notas = await NoteService.GetNotes();
+        }
+    }
+
+    private void EditarNota(Note nota)
+    {
+        notaEditando = new Note
+        {
+            Id = nota.Id,
+            Title = nota.Title,
+            Content = nota.Content
+        };
+    }
+
+    private async Task BorrarNota(int id)
+    {
+        var success = await NoteService.DeleteNote(id);
+        if (success)
+        {
+            notas = await NoteService.GetNotes();
+        }
+    }
+
+    private void CancelarEdicion()
+    {
+        notaEditando = new();
+    }
+
+    private void IrAlInicio()
+    {
+        Nav.NavigateTo("/");
+    }
+}

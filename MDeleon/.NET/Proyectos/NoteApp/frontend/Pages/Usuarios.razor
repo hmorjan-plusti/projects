@@ -1,0 +1,93 @@
+@page "/usuarios"
+@using frontend.Models
+@using frontend.Services
+@inject UserService UserService
+@inject AuthService AuthService
+@inject NavigationManager Nav
+
+<h3>Usuarios</h3>
+
+@if (!autenticado)
+{
+    <p>No estás autenticado. <a href="#" @onclick="IrAlInicio">Inicia sesión aquí</a>.</p>
+}
+else if (usuarios is null)
+{
+    <p>Cargando...</p>
+}
+else
+{
+    <ul>
+        @foreach (var user in usuarios)
+        {
+            <li>
+                <strong>@user.Username</strong>
+                <button @onclick="() => EditarUsuario(user)">Editar</button>
+                <button @onclick="() => BorrarUsuario(user.Id)">Eliminar</button>
+            </li>
+        }
+    </ul>
+
+    <h4>@(usuarioEditando.Id == 0 ? "Nuevo Usuario" : "Editar Usuario")</h4>
+    <EditForm Model="usuarioEditando" OnValidSubmit="GuardarUsuario">
+        <InputText @bind-Value="usuarioEditando.Username" placeholder="Usuario" class="form-control" />
+        <br />
+        <InputText @bind-Value="usuarioEditando.Password" placeholder="Contraseña" type="password" class="form-control" />
+        <br />
+        <button type="submit">@((usuarioEditando.Id == 0) ? "Agregar" : "Actualizar")</button>
+        @if (usuarioEditando.Id != 0)
+        {
+            <button type="button" @onclick="CancelarEdicion" class="btn btn-secondary"
+                style="margin-left: 1rem;">Cancelar</button>
+        }
+    </EditForm>
+}
+
+@code {
+    private List<UserDto>? usuarios;
+    private UserDto usuarioEditando = new();
+    private bool autenticado = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await AuthService.LoadToken();
+        autenticado = !string.IsNullOrEmpty(AuthService.Token);
+
+        if (autenticado)
+        {
+            usuarios = await UserService.GetAllUsers();
+        }
+    }
+
+    private async Task GuardarUsuario()
+    {
+        if (usuarioEditando.Id == 0)
+            await UserService.CreateUser(usuarioEditando);
+        else
+            await UserService.UpdateUser(usuarioEditando.Id, usuarioEditando);
+
+        usuarios = await UserService.GetAllUsers();
+        usuarioEditando = new();
+    }
+
+    private void EditarUsuario(UserDto user)
+    {
+        usuarioEditando = new UserDto { Id = user.Id, Username = user.Username };
+    }
+
+    private async Task BorrarUsuario(int id)
+    {
+        await UserService.DeleteUser(id);
+        usuarios = await UserService.GetAllUsers();
+    }
+
+    private void CancelarEdicion()
+    {
+        usuarioEditando = new();
+    }
+
+    private void IrAlInicio()
+    {
+        Nav.NavigateTo("/");
+    }
+}

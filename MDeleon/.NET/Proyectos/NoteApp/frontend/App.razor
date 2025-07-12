@@ -1,0 +1,23 @@
+﻿@using frontend.Services
+@inject AuthService AuthService
+
+<Router AppAssembly="@typeof(App).Assembly">
+    <Found Context="routeData">
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+    </Found>
+    <NotFound>
+        <LayoutView Layout="@typeof(MainLayout)">
+            <h1>Página no encontrada</h1>
+            <p>Lo sentimos, no se encontró esta ruta.</p>
+        </LayoutView>
+    </NotFound>
+</Router>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        // 🔐 Cargar token desde localStorage al iniciar
+        await AuthService.LoadToken();
+    }
+}

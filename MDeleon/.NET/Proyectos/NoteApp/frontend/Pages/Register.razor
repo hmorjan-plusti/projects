@@ -1,0 +1,45 @@
+@page "/register"
+@using frontend.Models
+@using frontend.Services
+@inject AuthService AuthService
+@inject NavigationManager Nav
+
+<h3>Registrarse</h3>
+
+@if (!string.IsNullOrEmpty(error))
+{
+    <div class="alert alert-danger">@error</div>
+}
+
+<EditForm Model="registro" OnValidSubmit="Registrar">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <InputText @bind-Value="registro.Username" class="form-control" placeholder="Usuario" />
+    </div>
+
+    <div class="mb-3">
+        <InputText @bind-Value="registro.Password" class="form-control" placeholder="Contraseña" type="password" />
+    </div>
+
+    <button type="submit" class="btn btn-success">Registrar</button>
+</EditForm>
+
+@code {
+    private UserDto registro = new();
+    private string error = "";
+
+    private async Task Registrar()
+    {
+        var success = await AuthService.Register(registro);
+        if (success)
+        {
+            Nav.NavigateTo("/login");
+        }
+        else
+        {
+            error = "No se pudo registrar el usuario.";
+        }
+    }
+}
