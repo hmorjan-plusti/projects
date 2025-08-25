@@ -18,7 +18,7 @@ const Register = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ username, email, password }),
+                body: JSON.stringify({ fullName: username, email, password }),
             });
 
             if (!response.ok) {
