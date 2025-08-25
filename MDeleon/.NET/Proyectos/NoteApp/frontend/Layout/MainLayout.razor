@@ -1,0 +1,34 @@
+﻿@inherits LayoutComponentBase
+@using frontend.Services
+@inject AuthService AuthService
+@inject NavigationManager NavManager
+
+<PageTitle>NoteApp</PageTitle>
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main>
+        <div class="top-row px-4">
+            <a href="" target="_blank">NoteApp</a>
+            @if (!string.IsNullOrEmpty(AuthService.Token))
+            {
+                <button @onclick="Logout" class="btn btn-sm btn-danger">Cerrar sesión</button>
+            }
+        </div>
+
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
+
+@code {
+    private async Task Logout()
+    {
+        await AuthService.Logout();
+        NavManager.NavigateTo("/");
+    }
+}

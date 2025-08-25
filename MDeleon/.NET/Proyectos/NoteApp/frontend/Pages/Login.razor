@@ -1,0 +1,50 @@
+@page "/login"
+@using frontend.Services
+@using frontend.Models
+@inject AuthService AuthService
+@inject NavigationManager Nav
+
+<h3>Iniciar Sesión</h3>
+
+@if (!string.IsNullOrEmpty(error))
+{
+    <div class="alert alert-danger">@error</div>
+}
+
+<EditForm Model="login" OnValidSubmit="Entrar">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label>Usuario</label>
+        <InputText @bind-Value="login.Username" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Contraseña</label>
+        <InputText @bind-Value="login.Password" type="password" class="form-control" />
+    </div>
+
+    <br />
+    <button type="submit" class="btn btn-primary">Entrar</button>
+</EditForm>
+
+@code {
+    private UserLogin login = new();
+    private string error = string.Empty;
+
+    private async Task Entrar()
+    {
+        error = "";
+
+        var success = await AuthService.Login(login);
+        if (success)
+        {
+            Nav.NavigateTo("/notas");
+        }
+        else
+        {
+            error = "Usuario o contraseña incorrectos.";
+        }
+    }
+}

@@ -1,0 +1,29 @@
+﻿@using frontend.Services
+@using frontend.Models
+@page "/"
+@inject NavigationManager Navigation
+@inject AuthService AuthService
+
+<PageTitle>Inicio</PageTitle>
+
+<h1>Bienvenido al Gestor de Notas</h1>
+<p>Por favor, inicia sesión, crea una cuenta, administra usuarios o gestiona tus notas.</p>
+
+<div style="margin-top: 2rem;">
+    <button class="btn btn-primary" @onclick='() => Navigation.NavigateTo("/login")'>Iniciar Sesión</button>
+    <button class="btn btn-secondary" style="margin-left: 1rem;"
+        @onclick='() => Navigation.NavigateTo("/register")'>Registrarse</button>
+    <button class="btn btn-info" style="margin-left: 1rem;"
+        @onclick='() => Navigation.NavigateTo("/usuarios")'>Usuarios</button>
+    <button class="btn btn-success" style="margin-left: 1rem;"
+        @onclick='() => Navigation.NavigateTo("/notas")'>Notas</button>
+
+</div>
+
+@code {
+    private async Task CerrarSesion()
+    {
+        await AuthService.Logout();
+        Navigation.NavigateTo("/");
+    }
+}
