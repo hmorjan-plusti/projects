@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"     # Puerto para apps
+      - "15672:15672"   # UI web de RabbitMQ
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    networks:
+      - app-network
+
+  authservice:
+    build: ./backend/AuthService
+    container_name: authservice
+    ports:
+      - "5000:8080"   # 👈 CORREGIDO: Puerto interno 8080
+    depends_on:
+      - rabbitmq
+    networks:
+      - app-network
+
+  userservice:
+    build: ./backend/UserService
+    container_name: userservice
+    ports:
+      - "5001:8080"   # 👈 CORREGIDO: Puerto interno 8080
+    depends_on:
+      - rabbitmq
+    networks:
+      - app-network
+
+  messagebroker:
+    build: ./backend/MessageBroker
+    container_name: messagebroker
+    ports:
+      - "5002:8080"   # 👈 CORREGIDO: Puerto interno 8080
+    depends_on:
+      - rabbitmq
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

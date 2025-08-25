@@ -1,0 +1,12 @@
+C:\Users\Marco Tulio\Documents\Github\projects\MDeleon\.NET\Proyectos\PlataformaGestionEmpresarial\backend\Plataforma.Domain\bin\Debug\net8.0\Plataforma.Domain.deps.json
+C:\Users\Marco Tulio\Documents\Github\projects\MDeleon\.NET\Proyectos\PlataformaGestionEmpresarial\backend\Plataforma.Domain\bin\Debug\net8.0\Plataforma.Domain.dll
+C:\Users\Marco Tulio\Documents\Github\projects\MDeleon\.NET\Proyectos\PlataformaGestionEmpresarial\backend\Plataforma.Domain\bin\Debug\net8.0\Plataforma.Domain.pdb
+C:\Users\Marco Tulio\Documents\Github\projects\MDeleon\.NET\Proyectos\PlataformaGestionEmpresarial\backend\Plataforma.Domain\obj\Debug\net8.0\Plataforma.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Marco Tulio\Documents\Github\projects\MDeleon\.NET\Proyectos\PlataformaGestionEmpresarial\backend\Plataforma.Domain\obj\Debug\net8.0\Plataforma.Domain.AssemblyInfoInputs.cache
+C:\Users\Marco Tulio\Documents\Github\projects\MDeleon\.NET\Proyectos\PlataformaGestionEmpresarial\backend\Plataforma.Domain\obj\Debug\net8.0\Plataforma.Domain.AssemblyInfo.cs
+C:\Users\Marco Tulio\Documents\Github\projects\MDeleon\.NET\Proyectos\PlataformaGestionEmpresarial\backend\Plataforma.Domain\obj\Debug\net8.0\Plataforma.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Marco Tulio\Documents\Github\projects\MDeleon\.NET\Proyectos\PlataformaGestionEmpresarial\backend\Plataforma.Domain\obj\Debug\net8.0\Plataforma.Domain.sourcelink.json
+C:\Users\Marco Tulio\Documents\Github\projects\MDeleon\.NET\Proyectos\PlataformaGestionEmpresarial\backend\Plataforma.Domain\obj\Debug\net8.0\Plataforma.Domain.dll
+C:\Users\Marco Tulio\Documents\Github\projects\MDeleon\.NET\Proyectos\PlataformaGestionEmpresarial\backend\Plataforma.Domain\obj\Debug\net8.0\refint\Plataforma.Domain.dll
+C:\Users\Marco Tulio\Documents\Github\projects\MDeleon\.NET\Proyectos\PlataformaGestionEmpresarial\backend\Plataforma.Domain\obj\Debug\net8.0\Plataforma.Domain.pdb
+C:\Users\Marco Tulio\Documents\Github\projects\MDeleon\.NET\Proyectos\PlataformaGestionEmpresarial\backend\Plataforma.Domain\obj\Debug\net8.0\ref\Plataforma.Domain.dll

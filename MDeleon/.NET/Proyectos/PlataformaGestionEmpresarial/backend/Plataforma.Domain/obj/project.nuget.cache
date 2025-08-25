@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "C7kIt3pQpPo=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Marco Tulio\\Documents\\Github\\projects\\MDeleon\\.NET\\Proyectos\\PlataformaGestionEmpresarial\\backend\\Plataforma.Domain\\Plataforma.Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Marco Tulio\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.19\\microsoft.netcore.app.ref.8.0.19.nupkg.sha512",
+    "C:\\Users\\Marco Tulio\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.19\\microsoft.windowsdesktop.app.ref.8.0.19.nupkg.sha512",
+    "C:\\Users\\Marco Tulio\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.19\\microsoft.aspnetcore.app.ref.8.0.19.nupkg.sha512"
+  ],
+  "logs": []
+}
