@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: plataforma-backend
+    ports:
+      - "5000:5000"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__Default=Data Source=/app/plataforma.db
+    volumes:
+      - ./backend/Plataforma.Api/plataforma.db:/app/plataforma.db
+    # SQLite no requiere contenedor de base de datos
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: plataforma-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+  # El servicio db se elimina para SQLite
